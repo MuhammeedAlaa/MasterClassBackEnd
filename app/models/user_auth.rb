@@ -1,22 +1,27 @@
 class UserAuth < ApplicationRecord
-  has_one :leaner, dependent: :destroy
-# , admin: 1, guest: 2, instructor: 3
-  enum role: {leaner: 0}
+  has_one :admin, dependent: :destroy
+  has_one :learner, dependent: :destroy
+  has_one :instructor, dependent: :destroy
+  enum role: { learner: 0, admin: 1, instructor: 2 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   def get_user
-    case UserAuth.roles[self.role]
-    when UserAuth.roles[:leaner]
-      return self.leaner
-    # when UserAuth.roles[:admin]
-    #   return self.admin
-    # when UserAuth.roles[:guest]
-    #   return self.guest
-    # when UserAuth.roles[:instructor]
-    #   return self.instructor
+    case UserAuth.roles[role]
+    when UserAuth.roles[:learner]
+      learner
+    when UserAuth.roles[:admin]
+      admin
+    when UserAuth.roles[:instructor]
+      instructor
     end
+  end
+
+  def generate_jwt
+    'Bearer ' + JWT.encode({ id: id, role: get_user,
+                             exp: Time.now.to_i + ENV['JWT_EXP_DATE'].to_i },
+                           ENV['JWT_SECRET'])
   end
 end
