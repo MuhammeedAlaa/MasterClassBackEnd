@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       put 'user/resetpassword', to: 'sessions#reset'
       post 'admin/promote', to: 'admins#promote_learner'
       post 'create/course', to: 'courses#create'
+      get 'courses', to: 'courses#courses'
     end
   end
 end
