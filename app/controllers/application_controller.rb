@@ -122,9 +122,7 @@ class ApplicationController < ActionController::API
 
   def decode_token
     token = request.headers['Authorization'].split(' ')[1]
-    decoded_token = JWT.decode(token, secret)
-    payload = decoded_token.first
-    puts payload
+    payload = JWT.decode(token, secret).first
     user_id = payload['id']
     @user_auth = UserAuth.find_by_id!(user_id)
   end
