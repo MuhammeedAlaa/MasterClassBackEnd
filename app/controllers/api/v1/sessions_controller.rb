@@ -26,7 +26,7 @@ class Api::V1::SessionsController < ApplicationController
   def current_user
     render status: :ok
   end
-  def reset
+  def forget
     @user = UserAuth.find_by(email: reset_params[:email])
     if @user.present?
       UserAuthMailer.with(user: @user).reset.deliver_later
@@ -43,7 +43,7 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  def update_password
+  def reset
     update_p = update_password_params
     @user = UserAuth.find_signed!(update_p[:token], purpose: "password_reset")
     if @user.update(password: update_p[:password], password_confirmation: update_p[:password_confirmation])
@@ -60,10 +60,10 @@ class Api::V1::SessionsController < ApplicationController
         'status': 'error',
         'data': [
           {
-            'message': 'Something went wrong'
+            'message': "Password doesn't match password confirmation"
           }
         ]
-      }, status: :internal_server_error
+      }, status: :bad_request
     
     end
 

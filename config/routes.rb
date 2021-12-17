@@ -8,8 +8,8 @@ Rails.application.routes.draw do
       post 'signup/admin', to: 'admins#create'
       post 'signup/instructor', to: 'instructors#create'
       get 'user', to: 'sessions#current_user'
-      post 'user/resetpassword', to: 'sessions#reset'
-      put 'user/resetpassword', to: 'sessions#update_password'
+      post 'user/forgetpassword', to: 'sessions#forget'
+      put 'user/resetpassword', to: 'sessions#reset'
     end
   end
 end
