@@ -20,7 +20,7 @@ class UserAuth < ApplicationRecord
   end
 
   def generate_jwt
-    'Bearer ' + JWT.encode({ id: id, role: get_user,
+    JWT.encode({ id: id, role: get_user,
                              exp: Time.now.to_i + ENV['JWT_EXP_DATE'].to_i },
                            ENV['JWT_SECRET'])
   end
