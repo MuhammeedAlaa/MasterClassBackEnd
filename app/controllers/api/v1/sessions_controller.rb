@@ -46,7 +46,7 @@ class Api::V1::SessionsController < ApplicationController
   def reset
     update_p = update_password_params
     @user = UserAuth.find_signed!(update_p[:token], purpose: "password_reset")
-    if @user.update(password: update_p[:password], password_confirmation: update_p[:password_confirmation])
+    if @user.update!(password: update_p[:password], password_confirmation: update_p[:password_confirmation])
      render json: {
         'status': 'success',
         'data': [

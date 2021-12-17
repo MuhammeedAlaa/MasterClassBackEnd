@@ -2,6 +2,7 @@ class UserAuth < ApplicationRecord
   has_one :admin, dependent: :destroy
   has_one :learner, dependent: :destroy
   has_one :instructor, dependent: :destroy
+  has_many :courses, dependent: :destroy  
   enum role: { learner: 0, admin: 1, instructor: 2 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

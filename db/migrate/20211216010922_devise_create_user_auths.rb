@@ -37,7 +37,7 @@ class DeviseCreateUserAuths < ActiveRecord::Migration[6.1]
     end
 
     add_index :user_auths, :email,                unique: true
-    add_index :user_auths, :reset_password_token, unique: true
+    # add_index :user_auths, :reset_password_token, unique: true
     # add_index :user_auths, :confirmation_token,   unique: true
     # add_index :user_auths, :unlock_token,         unique: true
   end

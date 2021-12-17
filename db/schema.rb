@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_16_173417) do
+ActiveRecord::Schema.define(version: 2021_12_17_195310) do
 
   create_table "admins", force: :cascade do |t|
     t.string "first_name"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2021_12_16_173417) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_auth_id"
     t.datetime "birthday"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_auth_id", null: false
+    t.index ["user_auth_id"], name: "index_courses_on_user_auth_id"
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -47,9 +55,9 @@ ActiveRecord::Schema.define(version: 2021_12_16_173417) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role"
     t.string "user_name"
-    t.index "\"reset_password_token\"", name: "index_user_auths_on_reset_password_token", unique: true
     t.index ["email"], name: "index_user_auths_on_email", unique: true
     t.index ["user_name"], name: "index_user_auths_on_user_name", unique: true
   end
 
+  add_foreign_key "courses", "user_auths"
 end

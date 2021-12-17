@@ -7,16 +7,19 @@ class ApplicationController < ActionController::API
     authenticate(roles: [])
   end
   
+  def authenticate_admin_instructor
+    authenticate(roles: [UserAuth.roles[:admin], UserAuth.roles[:instructor]])
+  end
   def authenticate_admin
     authenticate(roles: [UserAuth.roles[:admin]])
   end
 
   def authenticate_learner
-    authenticate(roles: [:learner])
+    authenticate(roles: [UserAuth.roles[:learner]])
   end
   
   def authenticate_instructor
-    authenticate(roles: [:instructor])
+    authenticate(roles: [UserAuth.roles[:instructor]])
   end
 
   def authenticate(roles: [])
