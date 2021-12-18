@@ -23,4 +23,4 @@ This is the back end apis for master class learning manegement system.
 
 ## Install instructions
 - Run `docker-compose up -d` on this directory
-- Head to your request to `localhost:3000`
+- Head your request to `localhost:3000`
