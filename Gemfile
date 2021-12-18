@@ -26,6 +26,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rack-cors'
 gem 'jwt'
 gem 'dotenv-rails'
+gem 'carrierwave'
+
 
 
 group :development, :test do

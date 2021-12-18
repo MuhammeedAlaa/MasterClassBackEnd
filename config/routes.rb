@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post 'admin/promote', to: 'admins#promote_learner'
       post 'create/course', to: 'courses#create'
       get 'courses', to: 'courses#courses'
+      post 'course/activity', to: 'courses#activity'
     end
   end
 end

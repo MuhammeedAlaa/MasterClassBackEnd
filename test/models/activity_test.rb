@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Api::Vi::AdminsControllerTest < ActionDispatch::IntegrationTest
+class ActivityTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

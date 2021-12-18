@@ -1,4 +1,4 @@
-json.success "success"
+json.success 'success'
 json.data do
   json.courses @courses
 end

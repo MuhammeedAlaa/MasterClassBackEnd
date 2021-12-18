@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_195310) do
+ActiveRecord::Schema.define(version: 2021_12_17_235141) do
+
+  create_table "activities", force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "link"
+    t.string "name", null: false
+    t.string "document"
+    t.index ["course_id"], name: "index_activities_on_course_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "first_name"
@@ -59,5 +69,6 @@ ActiveRecord::Schema.define(version: 2021_12_17_195310) do
     t.index ["user_name"], name: "index_user_auths_on_user_name", unique: true
   end
 
+  add_foreign_key "activities", "courses"
   add_foreign_key "courses", "user_auths"
 end
