@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post 'create/course', to: 'courses#create'
       get 'courses', to: 'courses#courses'
       get 'course', to: 'courses#course'
+      get 'course/activities', to: 'courses#activities'
       post 'course/activity', to: 'courses#activity'
     end
   end
