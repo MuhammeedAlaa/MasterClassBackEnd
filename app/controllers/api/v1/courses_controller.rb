@@ -1,7 +1,7 @@
 class Api::V1::CoursesController < ApplicationController
   wrap_parameters false
   before_action :authenticate_admin_instructor, only: %i[create activity]
-  before_action :authenticate_any, only: %i[courses course activities]
+  before_action :authenticate_any, only: %i[courses course activities enroll]
   include Paginate
   def create
     permited_params = create_course_params
@@ -63,10 +63,28 @@ class Api::V1::CoursesController < ApplicationController
     end
   end
 
+  def enroll
+    permited_params = enroll_params
+    @course = Course.find(permited_params[:course_id])
+    Enrollment.create!(user_auth: @user_auth, course: @course)
+    render json: {
+      'status': 'success',
+      "data": [
+        {
+          "message": 'Ernolled successfully!'
+        }
+      ]
+    }, status: :ok
+  end
+
   private
 
   def activity_params
     params.permit(:course_id, :name, link: [], document_data: [])
+  end
+
+  def enroll_params
+    params.permit(:course_id)
   end
 
   def create_course_params

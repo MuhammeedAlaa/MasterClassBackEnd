@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_235141) do
+ActiveRecord::Schema.define(version: 2021_12_18_041418) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "course_id", null: false
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2021_12_17_235141) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_auth_id", null: false
     t.index ["user_auth_id"], name: "index_courses_on_user_auth_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer "user_auth_id", null: false
+    t.integer "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_auth_id"], name: "index_enrollments_on_user_auth_id"
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -71,4 +80,6 @@ ActiveRecord::Schema.define(version: 2021_12_17_235141) do
 
   add_foreign_key "activities", "courses"
   add_foreign_key "courses", "user_auths"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "user_auths"
 end
