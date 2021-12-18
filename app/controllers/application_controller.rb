@@ -14,13 +14,6 @@ class ApplicationController < ActionController::API
     authenticate(roles: [UserAuth.roles[:admin]])
   end
 
-  def authenticate_learner
-    authenticate(roles: [UserAuth.roles[:learner]])
-  end
-  
-  def authenticate_instructor
-    authenticate(roles: [UserAuth.roles[:instructor]])
-  end
 
   def authenticate(roles: [])
     if request.headers['Authorization'].present?

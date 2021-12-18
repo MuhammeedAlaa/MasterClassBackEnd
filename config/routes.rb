@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       get 'course', to: 'courses#course'
       get 'course/activities', to: 'courses#activities'
       post 'course/activity', to: 'courses#activity'
+      patch 'user', to: 'sessions#update'
+      patch 'user/learner', to: 'learners#update'
+      patch 'user/admin', to: 'admins#update'
+      patch 'user/instructor', to: 'instructors#update'
     end
   end
 end
