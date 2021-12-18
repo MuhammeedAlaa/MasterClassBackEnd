@@ -1,24 +1,26 @@
-# README
+# MasterClass Back End
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the back end apis for master class learning manegement system.
 
-Things you may want to cover:
 
-* Ruby version
+## Requierments
 
-* System dependencies
+- you must have the .env file in the root directory.
+## Example for .env
+```
+     JWT_SECRET=secret
+     JWT_EXP_DATE=10000
+     MAIL_SERVICE=smtp.gmail.com
+     MAIL_PORT=587
+     EMAIL=example@gmail.com
+     PASSWORD=password
+     AUTHENTICATION=plain
+```
 
-* Configuration
+- You must have the master.key file in the config file
 
-* Database creation
+- You must have Docker and docker-compose installed.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Install instructions
+- Run `docker-compose up -d` on this directory
+- Head to your request to `localhost:3000`
