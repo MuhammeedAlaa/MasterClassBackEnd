@@ -1,12 +1,12 @@
 class Api::V1::CoursesController < ApplicationController
   wrap_parameters false
-  before_action :authenticate_admin_instructor, only: [:create]
-  before_action :authenticate_any, only: [:courses]
+  before_action :authenticate_admin_instructor, only: [:create, :activity]
+  before_action :authenticate_any, only: [:courses, :course]
   include Paginate
   def create
     permited_params = create_course_params
     @course = Course.create!(name: permited_params[:name], user_auth: @user_auth)
-    @data = { name: "#{@course.name}", course_id: @course.id, email: @user_auth.email, user_name: @user_auth.user_name}
+    @data = { name: "#{@course.name}", course_id: @course.id, creator_user_name: @user_auth.user_name}
     render status: :created
   end
 
@@ -15,6 +15,11 @@ class Api::V1::CoursesController < ApplicationController
     @courses = Course.all.select('id', 'name').limit(@limit).offset(@offset)
     @total = Course.all.count
     @count = @courses.count
+    render status: :ok
+  end
+  
+  def course
+    @course = Course.find(course_params[:id])
     render status: :ok
   end
 
@@ -44,12 +49,14 @@ class Api::V1::CoursesController < ApplicationController
 
   private
 
-
   def activity_params
     params.permit(:course_id, :name, :link => [] ,:document_data => [])
   end
   def create_course_params
     params.permit(:name)
+  end
+  def course_params
+    params.permit(:id)
   end
 
 end
