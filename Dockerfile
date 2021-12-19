@@ -12,7 +12,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
 RUN mkdir /masterclass-backend
 WORKDIR /masterclass-backend
 
-COPY Gemfile* package.json yarn.lock /app/
+COPY Gemfile* /masterclass-backend/
 
 RUN gem install bundler && \
     bundle install
