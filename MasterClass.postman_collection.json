@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "6d7003ce-c2a2-4a17-a884-f54d990d6fe9",
-		"name": "Sessions",
+		"name": "MasterClass",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -64,8 +64,49 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"soupermado5@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\",\r\n    \"user_name\": \"Alaa5\",\r\n    \"first_name\": \"Muhammad\",\r\n    \"last_name\": \"Alaa\",\r\n    \"birthday\": \"Thu, 16 Dec 2021 17:37:06.565053000 UTC +00:00\"\r\n}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "soupermad12@gasdf.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "Allasd122",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "fsdafasdf",
+							"type": "text"
+						},
+						{
+							"key": "user_name",
+							"value": "weqfwqef123",
+							"type": "text"
+						},
+						{
+							"key": "birthday",
+							"value": "Thu, 16 Dec 2021 17:37:06.565053000 UTC +00:00",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Dell/Pictures/23-23-59.jpg"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -90,8 +131,49 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"soupermado@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\",\r\n    \"user_name\": \"Alaa\",\r\n    \"first_name\": \"Muhammad\",\r\n    \"last_name\": \"Alaa\",\r\n    \"birthday\": \"Thu, 16 Dec 2021 17:37:06.565053000 UTC +00:00\"\r\n}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "soupermado12222@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "Alaa",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Muhammad",
+							"type": "text"
+						},
+						{
+							"key": "user_name",
+							"value": "Alaa12222",
+							"type": "text"
+						},
+						{
+							"key": "birthday",
+							"value": "Thu, 16 Dec 2021 17:37:06.565053000 UTC +00:00",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Dell/Pictures/id.png"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,8 +198,49 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"soupermado2@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\",\r\n    \"user_name\": \"Alaa4\",\r\n    \"first_name\": \"Muhammad\",\r\n    \"last_name\": \"Alaa\",\r\n    \"birthday\": \"Thu, 16 Dec 2021 17:37:06.565053000 UTC +00:00\"\r\n}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "soupermado12222@gmail.co",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "Alaa",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Muhammad",
+							"type": "text"
+						},
+						{
+							"key": "user_name",
+							"value": "Alaa12222222",
+							"type": "text"
+						},
+						{
+							"key": "birthday",
+							"value": "Thu, 16 Dec 2021 17:37:06.565053000 UTC +00:00",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Dell/Pictures/id.jpg"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -232,7 +355,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTViYzM0M2U4NzU4PiIsImV4cCI6MTYzOTg2OTI3MX0.OT8s_Y1V29ow-jjX-8DW4x-xv7izBHEd0f5QXoZudfA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTY0NGEyN2I4NjQ4PiIsImV4cCI6MTY0MDEzOTY5Nn0.XmMDDy409RUWIHmuSG8uuWN947dfMIwjAkl5AEVDVyI",
 							"type": "string"
 						}
 					]
@@ -240,8 +363,24 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Math\" \r\n}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Math2",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Dell/Pictures/id.jpg"
+						},
+						{
+							"key": "about",
+							"value": "ewqfuiweqhfiuhqweiufhqwuiefhiuqwheiufhqwefuqiwef",
+							"type": "text"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -309,7 +448,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTVlMTYzNWQzMTQwPiIsImV4cCI6MTYzOTgwMjk0MH0.DISx00blrHaOTCrTMvzjQeJxQWx-yxx2n8gZ4xpEdhw",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwN2ZkNDhkMGNjOWMwPiIsImV4cCI6MTY0MDEzNjY5N30.bTn7BSSZF0B4e_ROKmdlg5L9MsDyeyOTvWCzJr0D9-I",
 							"type": "string"
 						}
 					]
@@ -322,11 +461,11 @@
 						{
 							"key": "document_data[]",
 							"type": "file",
-							"src": []
+							"src": "/K:/Rails/Learning-Management-System/Consultation_Project_Requirements.pdf"
 						},
 						{
 							"key": "course_id",
-							"value": "1",
+							"value": "3",
 							"type": "text"
 						},
 						{
@@ -681,6 +820,45 @@
 					"raw": "{{URL}}thread",
 					"host": [
 						"{{URL}}thread"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Thread comments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTY0NGEyN2I4NjQ4PiIsImV4cCI6MTY0MDEzOTY5Nn0.XmMDDy409RUWIHmuSG8uuWN947dfMIwjAkl5AEVDVyI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"thread_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}thread/comment",
+					"host": [
+						"{{URL}}thread"
+					],
+					"path": [
+						"comment"
 					]
 				}
 			},
