@@ -17,7 +17,7 @@ This is the back end apis for master class learning manegement system.
      AUTHENTICATION=plain
 ```
 
-- You must have the master.key file in the config file
+- You must have the master.key file in the config directory
 
 - You must have Docker and docker-compose installed.
 
