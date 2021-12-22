@@ -1,7 +1,4 @@
 class ApplicationController < ActionController::API
-  before_action do
-    ActiveStorage::Current.host = request.base_url
-  end
 
   def authenticate_any
     authenticate(roles: [])

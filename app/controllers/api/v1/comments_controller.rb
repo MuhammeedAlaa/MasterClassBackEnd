@@ -24,13 +24,27 @@ class Api::V1::CommentsController < ApplicationController
     permited_params = thread_params
     @course = Course.find(permited_params[:course_id])
     @threads = @course.threads
+    @data = []
+    @threads.each do |thread|
+      @replier = UserAuth.find(thread.user_auth_id)
+      thread_image
+      @info = {id: thread.id, course_id: thread.course_id, body: thread.body, image: @image}
+      @data.push(@info)
+    end
     render status: :ok
   end
 
   def thread_comments
-    permited_params = thread_params
+    permited_params = thread_comments_params
     @thread = Comment.find(permited_params[:thread_id])
     @threads_comment = @thread.comments
+    @data = []
+    @threads_comment.each do |comment|
+      @replier = UserAuth.find(comment.user_auth_id)
+      thread_image
+      @info = {id: comment.id, course_id: comment.course_id, body: comment.body, image: @image, parent_id: comment.parent_id}
+      @data.push(@info)
+    end
     render status: :ok
   end
 
@@ -43,7 +57,16 @@ class Api::V1::CommentsController < ApplicationController
   def thread_params
       params.permit(:course_id)
   end
-  def thread_comments
+  def thread_comments_params
       params.permit(:thread_id)
+  end
+  def thread_image
+    @image = if @replier.role == 'admin'
+                           request.base_url + @replier.admin.image.url
+                        elsif @replier == 'instructor'
+                           request.base_url + @replier.instructor.image.url
+                        else
+                          request.base_url + @replier.learner.image.url
+                        end
   end
 end

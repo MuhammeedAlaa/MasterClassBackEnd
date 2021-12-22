@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_18_183844) do
+ActiveRecord::Schema.define(version: 2021_12_21_232227) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "course_id", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_12_18_183844) do
     t.string "link"
     t.string "name", null: false
     t.string "document"
+    t.string "description"
     t.index ["course_id"], name: "index_activities_on_course_id"
   end
 
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_12_18_183844) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_auth_id"
     t.datetime "birthday"
+    t.string "image"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -47,6 +49,8 @@ ActiveRecord::Schema.define(version: 2021_12_18_183844) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_auth_id", null: false
+    t.string "image"
+    t.string "about"
     t.index ["user_auth_id"], name: "index_courses_on_user_auth_id"
   end
 
@@ -66,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_12_18_183844) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_auth_id"
     t.datetime "birthday"
+    t.string "image"
   end
 
   create_table "learners", force: :cascade do |t|
@@ -75,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_12_18_183844) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_auth_id"
     t.datetime "birthday"
+    t.string "image"
   end
 
   create_table "user_auths", force: :cascade do |t|

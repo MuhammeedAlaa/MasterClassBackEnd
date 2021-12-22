@@ -5,14 +5,33 @@ class Api::V1::CoursesController < ApplicationController
   include Paginate
   def create
     permited_params = create_course_params
-    @course = Course.create!(name: permited_params[:name], user_auth: @user_auth)
-    @data = { name: @course.name.to_s, course_id: @course.id, creator_user_name: @user_auth.user_name }
+    @course = Course.create!(name: permited_params[:name], user_auth: @user_auth, image: permited_params[:image],
+                             about: permited_params[:about])
+    @data = { name: @course.name.to_s, course_id: @course.id, creator_user_name: @user_auth.user_name,
+              image: request.base_url + @course.image.url, about: @course.about }
     render status: :created
   end
 
   def courses
     @limit, @offset, @page = pagination_params
-    @courses = Course.all.select('id', 'name').limit(@limit).offset(@offset)
+    @courses = Course.all.limit(@limit).offset(@offset)
+    @data = []
+    @courses.each do |course|
+      @instructor = UserAuth.find(course.user_auth_id)
+      @instructor_image = inst_image
+      @activities = course.activities
+      @lessons = @activities.select(:name, :description).distinct.uniq
+      @activities_data = []
+      @lessons.each do |lesson|
+        @links_count = Activity.where('name = ? and link is not null',  lesson.name).count
+        @pds_count = Activity.where('name = ? and link is null', lesson.name).count
+        @activities_data.push({pdfs_count: @pds_count, links_count: @links_count, description: lesson.description, name: lesson.name})
+      end
+      @info = { name: course.name, image: request.base_url + course.image.url,
+                instructor_user_name: @instructor.user_name, instructor_image: @instructor_image, about: course.about, activities: @activities_data }
+      @data.push(@info)
+    end
+
     @total = Course.all.count
     @count = @courses.count
     render status: :ok
@@ -20,6 +39,10 @@ class Api::V1::CoursesController < ApplicationController
 
   def course
     @course = Course.find(course_params[:id])
+    @course_image = request.base_url + @course.image.url
+    @instructor = UserAuth.find(@course.user_auth_id)
+    @instructor_image = inst_image
+    @instructor_user_name = @instructor.user_name
     render status: :ok
   end
 
@@ -28,9 +51,9 @@ class Api::V1::CoursesController < ApplicationController
     @activities = Course.find(activities_params[:id]).activities.limit(@limit).offset(@offset)
     @data = []
     @activities.each do |activity|
-      @info = { course_id: activity.course_id, activity_id: activity.id,
+      @info = { activity_name: activity.name, activity_description: activity.description,
                 instructor_user_name: activity.course.user_auth.user_name }
-      @info[:link] = (request.base_url + activity.document.url) if activity.link.nil?
+      @info[:pdf] = (request.base_url + activity.document.url) if activity.link.nil?
       @info[:link] = activity.link if activity.link
       @data.push(@info)
       @total = Course.find(activities_params[:id]).activities.count
@@ -48,14 +71,14 @@ class Api::V1::CoursesController < ApplicationController
       if permited_params[:document_data]
         ActiveRecord::Base.transaction do
           permited_params[:document_data].each do |file|
-            Activity.create!(document: file, course: @course, name: permited_params[:name])
+            Activity.create!(document: file, course: @course, name: permited_params[:name], description: permited_params[:description])
           end
         end
       end
       if permited_params[:link]
         ActiveRecord::Base.transaction do
           permited_params[:link].each do |youtube_link|
-            Activity.create!(course: @course, name: permited_params[:name], link: youtube_link)
+            Activity.create!(course: @course, name: permited_params[:name], link: youtube_link, description: permited_params[:description])
           end
         end
       end
@@ -80,7 +103,7 @@ class Api::V1::CoursesController < ApplicationController
   private
 
   def activity_params
-    params.permit(:course_id, :name, link: [], document_data: [])
+    params.permit(:course_id, :name, :description, link: [], document_data: [])
   end
 
   def enroll_params
@@ -88,7 +111,7 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def create_course_params
-    params.permit(:name)
+    params.permit(:name, :image, :about)
   end
 
   def course_params
@@ -97,5 +120,12 @@ class Api::V1::CoursesController < ApplicationController
 
   def activities_params
     params.permit(:id, :offset, :limit, :page)
+  end
+  def inst_image
+    @instructor_image = if @instructor.role == 'admin'
+                           request.base_url + @instructor.admin.image.url
+                        else
+                           request.base_url + @instructor.instructor.image.url
+                        end
   end
 end

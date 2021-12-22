@@ -8,10 +8,10 @@ class Api::V1::InstructorsController < ApplicationController
       @user_auth = UserAuth.create(email: permited_params[:email], password: permited_params[:password],
                               password_confirmation: permited_params[:password_confirmation], user_name: permited_params[:user_name], role: role)
       @instructor = Instructor.create(first_name: permited_params[:first_name], last_name: permited_params[:last_name],
-                                 birthday: permited_params[:birthday], user_auth_id: @user_auth.id)
+                                 birthday: permited_params[:birthday], user_auth_id: @user_auth.id, image: permited_params[:image])
     end
     @data = { name: "#{@instructor.first_name} #{@instructor.last_name}", email: @user_auth.email,
-                  user_name: @user_auth.user_name, birthday: @instructor.birthday }
+                  user_name: @user_auth.user_name, birthday: @instructor.birthday, image: request.base_url + @instructor.image.url }
     render 'api/v1/shared/_create' ,status: :created
   end
 
@@ -53,7 +53,7 @@ class Api::V1::InstructorsController < ApplicationController
   private
 
   def signup_params
-    params.permit(:email, :password, :password_confirmation, :user_name, :first_name, :last_name, :birthday)
+    params.permit(:email, :password, :password_confirmation, :user_name, :first_name, :last_name, :birthday, :image)
   end
   def update_params
     params.permit(:user_password, :user_name, :first_name, :last_name, :birthday)
