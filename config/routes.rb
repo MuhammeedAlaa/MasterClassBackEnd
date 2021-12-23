@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       post 'thread', to: 'comments#create'
       get 'threads', to: 'comments#threads'
       get 'thread/comment', to: 'comments#thread_comments'
+      get 'user/learner', to: 'learners#getAll'
       patch 'user/learner', to: 'learners#update'
       patch 'user/admin', to: 'admins#update'
       patch 'user/instructor', to: 'instructors#update'

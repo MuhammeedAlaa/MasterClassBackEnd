@@ -1,6 +1,8 @@
 class Api::V1::LearnersController < ApplicationController
   wrap_parameters false
   before_action :authenticate_any, only: %i[update]
+  before_action :authenticate_admin, only: [:getAll]
+  include Paginate
   def create
     permited_params = signup_params
     ActiveRecord::Base.transaction do
@@ -48,6 +50,20 @@ class Api::V1::LearnersController < ApplicationController
         ]
       }, status: :unauthorized
     end
+  end
+
+  def getAll
+      @limit, @offset, @page = pagination_params
+      @learners = Learner.includes(:user_auth).all.limit(@limit).offset(@offset)
+      puts @learners.inspect
+      @learnersCount = Learner.all.count
+      render json: {
+      "status": 'success',
+      "data": {
+        "count": @learnersCount,
+        "learners": @learners
+      }
+    }, status: :ok
   end
 
   private
