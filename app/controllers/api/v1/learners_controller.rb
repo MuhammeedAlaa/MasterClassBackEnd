@@ -54,8 +54,7 @@ class Api::V1::LearnersController < ApplicationController
 
   def getAll
       @limit, @offset, @page = pagination_params
-      @learners = Learner.includes(:user_auth).all.limit(@limit).offset(@offset)
-      puts @learners.inspect
+      @learners = Learner.all.limit(@limit).offset(@offset)
       @learnersCount = Learner.all.count
       render json: {
       "status": 'success',
