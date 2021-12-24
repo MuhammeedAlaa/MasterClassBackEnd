@@ -53,11 +53,13 @@ class Api::V1::LearnersController < ApplicationController
   end
 
   def learners
-      @limit, @offset, @page = pagination_params
-      @learners = Learner.joins(:user_auth).select('learners.*', 'user_auths.user_name').all.limit(@limit).offset(@offset)
-      @count = @learners.count
-      @total = Learner.all.count
-      render status: :ok
+    @limit, @offset, @page = pagination_params
+    @learners = Learner.joins(:user_auth).where.not('user_auths.role' => 'instructor').select('learners.*',
+                                                                                              'user_auths.user_name').all
+    @learners = @learners.limit(@limit).offset(@offset)
+    @count = @learners.count
+    @total = Learner.all.count
+    render status: :ok
   end
 
   private
