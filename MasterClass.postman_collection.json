@@ -106,12 +106,7 @@
 							"type": "file",
 							"src": "/C:/Users/Dell/Pictures/23-23-59.jpg"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{URL}}signup/learner",
@@ -173,12 +168,7 @@
 							"type": "file",
 							"src": "/C:/Users/Dell/Pictures/id.png"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{URL}}signup/admin",
@@ -240,12 +230,7 @@
 							"type": "file",
 							"src": "/C:/Users/Dell/Pictures/id.jpg"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{URL}}signup/instructor",
@@ -380,12 +365,7 @@
 							"value": "ewqfuiweqhfiuhqweiufhqwuiefhiuqwheiufhqwefuqiwef",
 							"type": "text"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{URL}}create/course",
