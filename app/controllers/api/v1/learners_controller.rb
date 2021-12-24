@@ -52,17 +52,12 @@ class Api::V1::LearnersController < ApplicationController
     end
   end
 
-  def getAll
+  def learners
       @limit, @offset, @page = pagination_params
-      @learners = Learner.all.limit(@limit).offset(@offset)
-      @learnersCount = Learner.all.count
-      render json: {
-      "status": 'success',
-      "data": {
-        "count": @learnersCount,
-        "learners": @learners
-      }
-    }, status: :ok
+      @learners = Learner.joins(:user_auth).select('learners.*', 'user_auths.user_name').all.limit(@limit).offset(@offset)
+      @count = Learner.all.count
+      @total = Learner.all.count
+      render status: :ok
   end
 
   private
