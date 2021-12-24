@@ -55,7 +55,7 @@ class Api::V1::LearnersController < ApplicationController
   def learners
       @limit, @offset, @page = pagination_params
       @learners = Learner.joins(:user_auth).select('learners.*', 'user_auths.user_name').all.limit(@limit).offset(@offset)
-      @count = Learner.all.count
+      @count = @learners.count
       @total = Learner.all.count
       render status: :ok
   end
