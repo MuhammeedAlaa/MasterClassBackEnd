@@ -843,6 +843,33 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Learners",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IiM8QWRtaW46MHgwMDAwN2ZjNWMwMTU4ODIwPiIsImV4cCI6MTY0MDM0MjM2NX0.Kq_K-sQDZIHkr6LAyucbxsAtsbywY-CG5zxWytpPHdo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}user/learner",
+					"host": [
+						"{{URL}}user"
+					],
+					"path": [
+						"learner"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
