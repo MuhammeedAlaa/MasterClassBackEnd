@@ -62,11 +62,11 @@ class Api::V1::CommentsController < ApplicationController
   end
   def thread_image
     @image = if @replier.role == 'admin'
-                           request.base_url + @replier.admin.image.url
+                          @replier.admin.image.url
                         elsif @replier == 'instructor'
-                           request.base_url + @replier.instructor.image.url
+                          @replier.instructor.image.url
                         else
-                          request.base_url + @replier.learner.image.url
+                         @replier.learner.image.url
                         end
   end
 end

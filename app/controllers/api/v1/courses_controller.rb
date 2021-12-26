@@ -5,10 +5,11 @@ class Api::V1::CoursesController < ApplicationController
   include Paginate
   def create
     permited_params = create_course_params
-    @course = Course.create!(name: permited_params[:name], user_auth: @user_auth, image: permited_params[:image],
+    @image = permited_params[:image] || Rails.root.join('public/images/fallback/courses/default.png').open
+    @course = Course.create!(name: permited_params[:name], user_auth: @user_auth, image: @image,
                              about: permited_params[:about])
     @data = { name: @course.name.to_s, course_id: @course.id, creator_user_name: @user_auth.user_name,
-              image: request.base_url + @course.image.url, about: @course.about }
+              image: @course.image.url, about: @course.about }
     render status: :created
   end
 
@@ -27,7 +28,7 @@ class Api::V1::CoursesController < ApplicationController
         @pds_count = Activity.where('name = ? and link is null', lesson.name).count
         @activities_data.push({pdfs_count: @pds_count, links_count: @links_count, description: lesson.description, name: lesson.name})
       end
-      @info = { name: course.name, image: request.base_url + course.image.url,
+      @info = { name: course.name, image: course.image.url,
                 instructor_user_name: @instructor.user_name, instructor_image: @instructor_image, about: course.about, activities: @activities_data }
       @data.push(@info)
     end
@@ -39,7 +40,7 @@ class Api::V1::CoursesController < ApplicationController
 
   def course
     @course = Course.find(course_params[:id])
-    @course_image = request.base_url + @course.image.url
+    @course_image = @course.image.url
     @instructor = UserAuth.find(@course.user_auth_id)
     @instructor_image = inst_image
     @instructor_user_name = @instructor.user_name
@@ -53,7 +54,7 @@ class Api::V1::CoursesController < ApplicationController
     @activities.each do |activity|
       @info = { activity_name: activity.name, activity_description: activity.description,
                 instructor_user_name: activity.course.user_auth.user_name }
-      @info[:pdf] = (request.base_url + activity.document.url) if activity.link.nil?
+      @info[:pdf] = (activity.document.url) if activity.link.nil?
       @info[:link] = activity.link if activity.link
       @data.push(@info)
       @total = Course.find(activities_params[:id]).activities.count
@@ -123,9 +124,9 @@ class Api::V1::CoursesController < ApplicationController
   end
   def inst_image
     @instructor_image = if @instructor.role == 'admin'
-                           request.base_url + @instructor.admin.image.url
+                          @instructor.admin.image.url
                         else
-                           request.base_url + @instructor.instructor.image.url
+                          @instructor.instructor.image.url
                         end
   end
 end
