@@ -11,7 +11,7 @@ class Api::V1::AdminsController < ApplicationController
                             birthday: permited_params[:birthday], user_auth_id: @user_auth.id, image: permited_params[:image])
     end
     @data = { name: "#{@admin.first_name} #{@admin.last_name}", email: @user_auth.email,
-              user_name: @user_auth.user_name, birthday: @admin.birthday, image: @admin.image.url }
+              user_name: @user_auth.user_name, birthday: @admin.birthday, image: @admin.image.url, type: @user_auth.role }
     render 'api/v1/shared/_create', status: :created
   end
 

@@ -14,7 +14,7 @@ class Api::V1::SessionsController < ApplicationController
       if @user_auth.valid_password?(permited_params[:password])
         @user = @user_auth.get_user
         @data = { name: "#{@user.first_name} #{@user.last_name}", email: @user_auth.email,
-                  user_name: @user_auth.user_name, birthday: @user.birthday }
+                  user_name: @user_auth.user_name, birthday: @user.birthday, type: @user_auth.role }
         render  'api/v1/shared/_create', status: :ok
       else
         render 'api/v1/errors/incorrect_credentials', states: :unauthorized

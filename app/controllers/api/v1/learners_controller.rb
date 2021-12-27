@@ -12,7 +12,7 @@ class Api::V1::LearnersController < ApplicationController
                                  birthday: permited_params[:birthday], user_auth_id: @user_auth.id, image: permited_params[:image])
     end
     @data = { name: "#{@learner.first_name} #{@learner.last_name}", email: @user_auth.email,
-              user_name: @user_auth.user_name, birthday: @learner.birthday, image: @learner.image.url }
+              user_name: @user_auth.user_name, birthday: @learner.birthday, image: @learner.image.url ,  type: @user_auth.role}
     render 'api/v1/shared/_create', status: :created
   end
 
