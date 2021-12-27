@@ -29,7 +29,7 @@ class ApplicationController < ActionController::API
         end
         @user = @user_auth.get_user
         @user = { name: "#{@user.first_name} #{@user.last_name}", email: @user_auth.email,
-                  user_name: @user_auth.user_name, birthday: @user.birthday }
+                  user_name: @user_auth.user_name, birthday: @user.birthday, image: @user.image.url }
       rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError => e
         render json: {
           "status": 'error',
