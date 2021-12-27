@@ -75,16 +75,18 @@ class Api::V1::SessionsController < ApplicationController
   def update
     permited_params = update_params
     @user = UserAuth.find_by!(user_name: permited_params[:old_user_name])
-    if @user.user_name != @user_auth.user_name && @user_auth.role != 'admin'
-      render json: {
-        "status": 'error',
-        "errors": [
-          {
-            "name": 'Unauthorized',
-            "message": 'Un authorized request'
-          }
-        ]
-      }, status: :unauthorized
+    if @user.user_name != @user_auth.user_name
+      if @user_auth.role != 'admin' || @user_auth.role == 'admin' && @user.role == 'admin'
+        render json: {
+          "status": 'error',
+          "errors": [
+            {
+              "name": 'Unauthorized',
+              "message": 'Un authorized request'
+            }
+          ]
+        }, status: :unauthorized
+      end
     else
       if @user_auth.valid_password?(permited_params[:user_password])
         permited_params.delete("user_password")

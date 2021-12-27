@@ -1,6 +1,6 @@
 class Api::V1::InstructorsController < ApplicationController
   wrap_parameters false
-  before_action :authenticate_admin, only: [:update]
+  before_action :authenticate_admin_instructor, only: [:update]
 
   def create
     permited_params = signup_params
@@ -31,9 +31,9 @@ class Api::V1::InstructorsController < ApplicationController
     elsif @user_auth.valid_password?(permited_params[:user_password])
       permited_params.delete('user_password')
       permited_params.delete('user_name')
-      if @user.instuctor.update!(permited_params)
-        @user = { id: @user.id, user_name: @user.user_name, birthday: @user.instuctor.birthday,
-                  first_name: @user.instuctor.first_name, last_name: @user.instuctor.last_name }
+      if @user.instructor.update!(permited_params)
+        @user = { id: @user.id, user_name: @user.user_name, birthday: @user.instructor.birthday,
+                  first_name: @user.instructor.first_name, last_name: @user.instructor.last_name }
         render status: :ok
       else
         render 'api/v1/errors/invalid_user_data', status: :bad_request

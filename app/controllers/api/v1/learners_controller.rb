@@ -1,7 +1,7 @@
 class Api::V1::LearnersController < ApplicationController
   wrap_parameters false
-  before_action :authenticate_any, only: %i[update]
-  before_action :authenticate_admin, only: [:getAll]
+  before_action :authenticate_any, only: [:update]
+  before_action :authenticate_admin, only: [:learnerz]
   include Paginate
   def create
     permited_params = signup_params
