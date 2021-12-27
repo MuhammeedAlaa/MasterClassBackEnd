@@ -76,7 +76,7 @@ class Api::V1::SessionsController < ApplicationController
     permited_params = update_params
     @user = UserAuth.find_by!(user_name: permited_params[:old_user_name])
     if @user.user_name != @user_auth.user_name
-      if @user_auth.role != 'admin' || @user_auth.role == 'admin' && @user.role == 'admin'
+      if @user_auth.role != 'admin' || (@user_auth.role == 'admin' && @user.role == 'admin')
         render json: {
           "status": 'error',
           "errors": [
