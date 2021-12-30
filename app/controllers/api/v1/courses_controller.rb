@@ -28,7 +28,7 @@ class Api::V1::CoursesController < ApplicationController
         @pds_count = Activity.where('name = ? and link is null', lesson.name).count
         @activities_data.push({pdfs_count: @pds_count, links_count: @links_count, description: lesson.description, name: lesson.name})
       end
-      @info = { name: course.name, image: course.image.url,
+      @info = {id: course.id, name: course.name, image: course.image.url,
                 instructor_user_name: @instructor.user_name, instructor_image: @instructor_image, about: course.about, activities: @activities_data }
       @data.push(@info)
     end
