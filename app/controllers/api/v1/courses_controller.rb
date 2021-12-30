@@ -50,16 +50,22 @@ class Api::V1::CoursesController < ApplicationController
   def activities
     @limit, @offset, @page = pagination_params
     @activities = Course.find(activities_params[:id]).activities.limit(@limit).offset(@offset)
-    @data = []
+    @data = Set.new
     @activities.each do |activity|
+      @links = Activity.where('name = ? and link is not null',  activity.name).select('link').pluck('link')
+      @pdfs = Activity.where('name = ? and link is null', activity.name).select('document', 'course_id')
+      @pdfs_link = []
+      @pdfs.each do |pdf|
+        @pdfs_link.push(pdf.document.url)
+      end 
       @info = { activity_name: activity.name, activity_description: activity.description,
-                instructor_user_name: activity.course.user_auth.user_name }
-      @info[:pdf] = (activity.document.url) if activity.link.nil?
-      @info[:link] = activity.link if activity.link
-      @data.push(@info)
-      @total = Course.find(activities_params[:id]).activities.count
-      @count = @activities.count
+                instructor_user_name: activity.course.user_auth.user_name, links: @links, pdfs: @pdfs_link }
+      # @info[:pdf] = (activity.document.url) if activity.link.nil?
+      # @info[:link] = activity.link if activity.link
+      @data << @info
     end
+    @total = Course.find(activities_params[:id]).activities.count
+    @count = @data.count
     render status: :ok
   end
 
