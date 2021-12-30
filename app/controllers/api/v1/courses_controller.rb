@@ -53,7 +53,7 @@ class Api::V1::CoursesController < ApplicationController
     @data = Set.new
     @activities.each do |activity|
       @links = Activity.where('name = ? and course_id = ? and link is not null', activity.name, activity.course_id).select('link').pluck('link')
-      @pdfs = Activity.where('name = ? and course_id = ? and link is null', activity.name, activity.course_id).select('document', 'course_id')
+      @pdfs = Activity.where('name = ? and course_id = ? and link is null', activity.name, activity.course_id).select('document', 'course_id', 'id')
       @pdfs_link = []
       @pdfs.each do |pdf|
         @pdfs_link.push(pdf.document.url)
