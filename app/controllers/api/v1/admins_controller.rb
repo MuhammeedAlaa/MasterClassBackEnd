@@ -1,6 +1,6 @@
 class Api::V1::AdminsController < ApplicationController
   wrap_parameters false
-  before_action :authenticate_admin, only: [:promote_learner, :update]
+  before_action :authenticate_admin, only: [:promote_learner, :update, :create]
   
   def create
     permited_params = signup_params
