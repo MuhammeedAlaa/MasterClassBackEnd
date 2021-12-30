@@ -52,8 +52,8 @@ class Api::V1::CoursesController < ApplicationController
     @activities = Course.find(activities_params[:id]).activities.limit(@limit).offset(@offset)
     @data = Set.new
     @activities.each do |activity|
-      @links = Activity.where('name = ? and link is not null',  activity.name).select('link').pluck('link')
-      @pdfs = Activity.where('name = ? and link is null', activity.name).select('document', 'course_id')
+      @links = Activity.where('name = ? and course_id = ? and link is not null', activity.name, activity.course_id).select('link').pluck('link')
+      @pdfs = Activity.where('name = ? and course_id = ? and link is null', activity.name, activity.course_id).select('document', 'course_id')
       @pdfs_link = []
       @pdfs.each do |pdf|
         @pdfs_link.push(pdf.document.url)
