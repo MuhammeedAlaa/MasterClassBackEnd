@@ -42,7 +42,7 @@ class Api::V1::CommentsController < ApplicationController
     @threads_comment.each do |comment|
       @replier = UserAuth.find(comment.user_auth_id)
       thread_image
-      @info = {id: comment.id, course_id: comment.course_id, body: comment.body, image: @image, parent_id: comment.parent_id, user_name: @replier.user_name}
+      @info = {id: comment.id, course_id: comment.course_id, body: comment.body, image: @image, parent_id: comment.parent_id, user_name: @replier.user_name, parent_body: @thread.body}
       @data.push(@info)
     end
     render status: :ok
