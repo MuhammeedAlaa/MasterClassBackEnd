@@ -28,7 +28,6 @@ class Api::V1::CommentsController < ApplicationController
     @threads.each do |thread|
       @replier = UserAuth.find(thread.user_auth_id)
       thread_image
-      
       @info = {id: thread.id, course_id: thread.course_id, body: thread.body, image: @image, user_name: @replier.user_name}
       @data.push(@info)
     end

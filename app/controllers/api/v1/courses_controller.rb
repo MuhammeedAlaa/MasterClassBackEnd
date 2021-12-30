@@ -1,7 +1,7 @@
 class Api::V1::CoursesController < ApplicationController
   wrap_parameters false
   before_action :authenticate_admin_instructor, only: %i[create activity]
-  before_action :authenticate_any, only: %i[courses course activities enroll]
+  before_action :authenticate_any, only: %i[courses course activities enroll instructor_courses]
   include Paginate
   def create
     permited_params = create_course_params
@@ -60,8 +60,6 @@ class Api::V1::CoursesController < ApplicationController
       end 
       @info = { activity_name: activity.name, activity_description: activity.description,
                 instructor_user_name: activity.course.user_auth.user_name, links: @links, pdfs: @pdfs_link }
-      # @info[:pdf] = (activity.document.url) if activity.link.nil?
-      # @info[:link] = activity.link if activity.link
       @data << @info
     end
     @total = Course.find(activities_params[:id]).activities.count
@@ -107,10 +105,22 @@ class Api::V1::CoursesController < ApplicationController
     }, status: :ok
   end
 
+  def instructor_courses
+    @limit, @offset, @page = pagination_params
+    @instructor = UserAuth.find_by!('user_name = ?', instructor_courses_params[:user_name] )
+    @courses = Course.where('user_auth_id = ?', @instructor.id).limit(@limit).offset(@offset)
+    @total = Course.where('user_auth_id = ?', @instructor.id).count
+    @count = @courses.count
+    render states: :ok
+  end
+
   private
 
   def activity_params
     params.permit(:course_id, :name, :description, link: [], document_data: [])
+  end
+  def instructor_courses_params
+    params.permit(:user_name, :offset, :limit, :page)
   end
 
   def enroll_params
