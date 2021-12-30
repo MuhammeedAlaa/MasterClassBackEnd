@@ -19,3 +19,10 @@ user_auth = UserAuth.create(email: 'houssam.alaa99@eng-st.cu.edu.eg', password: 
 Learner.create(first_name: 'Housam', last_name: 'Alaa', birthday: Time.now - 22.years, user_auth_id: user_auth.id)
 
 Course.create!(name: 'Consultation', user_auth: instructor, about: 'this course to understand the basic concepts of conultation and security')
+Course.create!(name: 'Math', user_auth: instructor, about: 'this course to understand the basic concepts of math and calculas 1')
+Course.create!(name: 'Math2', user_auth: instructor, about: 'this course to understand the basic concepts of math and calculas 2')
+Course.create!(name: 'Networks', user_auth: instructor, about: 'this course to understand the basic concepts of networks')
+Course.create!(name: 'Embedded', user_auth: instructor, about: 'this course to understand the basic concepts of embedded systems')
+Course.create!(name: 'Pattarns', user_auth: instructor, about: 'this course to understand the basic concepts of pattarn')
+Course.create!(name: 'ADB', user_auth: instructor, about: 'this course to understand the basic concepts of advanced databases')
+Course.create!(name: 'Modling', user_auth: instructor, about: 'this course to understand the basic concepts of modling')
