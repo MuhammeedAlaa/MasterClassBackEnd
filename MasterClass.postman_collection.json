@@ -7,6 +7,17 @@
 	"item": [
 		{
 			"name": "SignIn",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"jwt\", pm.response.json().data.access_tokn);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -18,7 +29,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"soupermado@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+					"raw": "{\r\n    \"email\": \"muhammad.ahmed99@eng-st.cu.edu.eg\",\r\n    \"password\": \"password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,6 +71,17 @@
 		},
 		{
 			"name": "Signup Learner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"jwt\", pm.response.json().data.access_tokn);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -68,43 +90,44 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "soupermad12@gasdf.com",
+							"value": "soupermado133233@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "123456",
+							"value": "password",
 							"type": "text"
 						},
 						{
 							"key": "password_confirmation",
-							"value": "123456",
+							"value": "password",
 							"type": "text"
 						},
 						{
 							"key": "first_name",
-							"value": "Allasd122",
+							"value": "Muhammad",
 							"type": "text"
 						},
 						{
 							"key": "last_name",
-							"value": "fsdafasdf",
+							"value": "Alaa",
 							"type": "text"
 						},
 						{
 							"key": "user_name",
-							"value": "weqfwqef123",
+							"value": "Mado",
 							"type": "text"
 						},
 						{
 							"key": "birthday",
-							"value": "Thu, 16 Dec 2021 17:37:06.565053000 UTC +00:00",
+							"value": "Thu, 16 Dec 1999 17:37:06.565053000 UTC +00:00",
 							"type": "text"
 						},
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/C:/Users/Dell/Pictures/23-23-59.jpg"
+							"src": "/C:/Users/Dell/Pictures/id.jpg",
+							"disabled": true
 						}
 					]
 				},
@@ -122,6 +145,17 @@
 		},
 		{
 			"name": "Signup Admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"jwt\", pm.response.json().data.access_tokn);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -184,6 +218,17 @@
 		},
 		{
 			"name": "Signup Instructor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"jwt\", pm.response.json().data.access_tokn);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -192,7 +237,7 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "soupermado12222@gmail.co",
+							"value": "soupermado12222@gmail.com",
 							"type": "text"
 						},
 						{
@@ -217,7 +262,7 @@
 						},
 						{
 							"key": "user_name",
-							"value": "Alaa12222222",
+							"value": "Alaa1222222",
 							"type": "text"
 						},
 						{
@@ -228,7 +273,8 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/C:/Users/Dell/Pictures/id.jpg"
+							"src": "/C:/Users/Dell/Pictures/id.jpg",
+							"disabled": true
 						}
 					]
 				},
@@ -304,7 +350,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTU3OTY0NTI3ZWIwPiIsImV4cCI6MTYzOTc4NzU0Mn0.0SuJbmS2B6bqtOtr6bsU-_ArOG2CVqrPpSVYzJg-DcA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IiM8QWRtaW46MHgwMDAwN2ZmOTk0ODQ4ZTk4PiIsImV4cCI6MTY0MDM4MjQ3M30.dD0OpnJOMr8dN5rlnGPnuXD3z9cYfBlsbXklcYnqq7I",
 							"type": "string"
 						}
 					]
@@ -313,7 +359,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_name\": \"Alaa3\"\r\n}",
+					"raw": "{\r\n    \"user_name\": \"weqfwq\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -387,7 +433,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTU3NGVhNWEwN2QwPiIsImV4cCI6MTYzOTc5MDQ5N30.AC0IzAiUtcitCqRgardJYh_FlZ4w3GWQSXiRjZwFzxc",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -402,19 +448,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{URL}}courses?limit=2&offset=4",
+					"raw": "{{URL}}courses",
 					"host": [
 						"{{URL}}courses"
-					],
-					"query": [
-						{
-							"key": "limit",
-							"value": "2"
-						},
-						{
-							"key": "offset",
-							"value": "4"
-						}
 					]
 				}
 			},
@@ -428,7 +464,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwN2ZkNDhkMGNjOWMwPiIsImV4cCI6MTY0MDEzNjY5N30.bTn7BSSZF0B4e_ROKmdlg5L9MsDyeyOTvWCzJr0D9-I",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -441,21 +477,39 @@
 						{
 							"key": "document_data[]",
 							"type": "file",
-							"src": "/K:/Rails/Learning-Management-System/Consultation_Project_Requirements.pdf"
+							"src": [
+								"/K:/الكلية/MI/Slides/PDF/[MI][Week1]Chapter1.pdf",
+								"/K:/الكلية/MI/Slides/PDF/[MI][Week1]Chapter2.pdf",
+								"/K:/الكلية/MI/Slides/PDF/[MI][Week2]Chapter3_part1_UninformedSearch.pdf",
+								"/K:/الكلية/MI/Slides/PDF/[MI][Week3][Chapter3_part2_informedSearch.pdf",
+								"/K:/الكلية/MI/Slides/PDF/[MI][Week4]Chapter4_LocalSearch.pdf",
+								"/K:/الكلية/MI/Slides/PDF/[MI][Week6]Chapter5_games_v2.pdf",
+								"/K:/الكلية/MI/Slides/PDF/[MI][Week6]Chapter6_CSP_v2.pdf"
+							]
 						},
 						{
 							"key": "course_id",
-							"value": "3",
+							"value": "1",
 							"type": "text"
 						},
 						{
 							"key": "name",
-							"value": "Lect1",
+							"value": "Lec1",
 							"type": "text"
 						},
 						{
-							"key": "",
-							"value": "",
+							"key": "description",
+							"value": "This is nlp intro",
+							"type": "text"
+						},
+						{
+							"key": "link[]",
+							"value": "https://www.youtube.com/watch?v=mTOXVRao3eA",
+							"type": "text"
+						},
+						{
+							"key": "link[]",
+							"value": "https://www.youtube.com/watch?v=mTOXVRao3eA",
 							"type": "text",
 							"disabled": true
 						}
@@ -484,7 +538,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTVlMTYzNWQzMTQwPiIsImV4cCI6MTYzOTgwMjk0MH0.DISx00blrHaOTCrTMvzjQeJxQWx-yxx2n8gZ4xpEdhw",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTY0NGEyN2I4NjQ4PiIsImV4cCI6MTY0MDEzOTY5Nn0.XmMDDy409RUWIHmuSG8uuWN947dfMIwjAkl5AEVDVyI",
 							"type": "string"
 						}
 					]
@@ -523,7 +577,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTVlMTYzNWQzMTQwPiIsImV4cCI6MTYzOTgwMjk0MH0.DISx00blrHaOTCrTMvzjQeJxQWx-yxx2n8gZ4xpEdhw",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -540,7 +594,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{URL}}/course/activities?offset=1&limit=5",
+					"raw": "{{URL}}/course/activities?limit=100",
 					"host": [
 						"{{URL}}"
 					],
@@ -551,11 +605,17 @@
 					"query": [
 						{
 							"key": "offset",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						},
 						{
 							"key": "limit",
-							"value": "5"
+							"value": "5",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "100"
 						}
 					]
 				}
@@ -570,7 +630,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTVlMTYzNWQzMTQwPiIsImV4cCI6MTYzOTgwMjk0MH0.DISx00blrHaOTCrTMvzjQeJxQWx-yxx2n8gZ4xpEdhw",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -579,7 +639,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_password\": \"123456\",\r\n    \"user_name\": \"Alano\",\r\n    \"old_user_name\": \"Ala20\"\r\n}",
+					"raw": "{\r\n    \"user_password\": \"password\",\r\n    \"user_name\": \"Alano\",\r\n    \"old_user_name\": \"Alaa\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -603,7 +663,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTVlMTYzNWQzMTQwPiIsImV4cCI6MTYzOTgwMjk0MH0.DISx00blrHaOTCrTMvzjQeJxQWx-yxx2n8gZ4xpEdhw",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -612,7 +672,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_password\": \"123456\",\r\n    \"first_name\": \"AAAAAAA\",\r\n    \"last_name\": \"AABBBBBB\",\r\n    \"user_name\": \"Alano\"\r\n}",
+					"raw": "{\r\n    \"user_password\": \"password\",\r\n    \"first_name\": \"AAAAAAA\",\r\n    \"last_name\": \"AABBBBBB\",\r\n    \"user_name\": \"Mado\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -639,7 +699,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTVlMTYzNWQzMTQwPiIsImV4cCI6MTYzOTgwMjk0MH0.DISx00blrHaOTCrTMvzjQeJxQWx-yxx2n8gZ4xpEdhw",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -648,7 +708,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_password\": \"123456\",\r\n    \"first_name\": \"Mu\",\r\n    \"last_name\": \"Alaa\"\r\n}",
+					"raw": "{\r\n    \"user_password\": \"password\",\r\n    \"first_name\": \"Mu\",\r\n    \"last_name\": \"Alaa\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -675,7 +735,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTVlMTYzNWQzMTQwPiIsImV4cCI6MTYzOTgwMjk0MH0.DISx00blrHaOTCrTMvzjQeJxQWx-yxx2n8gZ4xpEdhw",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -684,7 +744,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_password\": \"123456\",\r\n    \"first_name\": \"AAAAAAA\",\r\n    \"last_name\": \"AABBBBBB\",\r\n    \"user_name\": \"Alano\"\r\n}",
+					"raw": "{\r\n    \"user_password\": \"123456\",\r\n    \"first_name\": \"AAAAAAA\",\r\n    \"last_name\": \"AABBBBBB\",\r\n    \"user_name\": \"Alaa12222222\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -747,7 +807,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTViYzM0M2U4NzU4PiIsImV4cCI6MTYzOTg2OTI3MX0.OT8s_Y1V29ow-jjX-8DW4x-xv7izBHEd0f5QXoZudfA",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -780,7 +840,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTViYzM0M2U4NzU4PiIsImV4cCI6MTYzOTg2OTI3MX0.OT8s_Y1V29ow-jjX-8DW4x-xv7izBHEd0f5QXoZudfA",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -789,7 +849,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"comment\" : {\r\n            \"body\": \"ewoiqfqweiof\",\r\n            \"course_id\": 1\r\n    }\r\n}",
+					"raw": "{\r\n    \"comment\" : {\r\n            \"body\": \"ewoiqfqweioweqifjowqefjiff\",\r\n            \"course_id\": 1,\r\n            \"parent_id\": 1\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -816,7 +876,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IiM8QWRtaW46MHgwMDAwNTY0NGEyN2I4NjQ4PiIsImV4cCI6MTY0MDEzOTY5Nn0.XmMDDy409RUWIHmuSG8uuWN947dfMIwjAkl5AEVDVyI",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -852,7 +912,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IiM8QWRtaW46MHgwMDAwN2ZjNWMwMTU4ODIwPiIsImV4cCI6MTY0MDM0MjM2NX0.Kq_K-sQDZIHkr6LAyucbxsAtsbywY-CG5zxWytpPHdo",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -866,6 +926,45 @@
 					],
 					"path": [
 						"learner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Instructor Courses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_name\": \"Etsh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}instructor/courses",
+					"host": [
+						"{{URL}}instructor"
+					],
+					"path": [
+						"courses"
 					]
 				}
 			},
