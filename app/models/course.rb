@@ -5,9 +5,10 @@ class Course < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :activities, dependent: :destroy
   mount_uploader :image, ImagesUploader
-
   after_find do
-    self.image = Rails.root.join('public/images/fallback/courses/default.png').open if self.image.file.extension == ''
+    if self.image.nil?
+      self.image = Rails.root.join('public/images/fallback/courses/default.png').open
+    end
   end
   def threads
     Comment.where(course: self, parent_id: nil)
