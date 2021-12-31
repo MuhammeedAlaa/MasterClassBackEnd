@@ -5,7 +5,9 @@ class Api::V1::CoursesController < ApplicationController
   include Paginate
   def create
     permited_params = create_course_params
-    @image = permited_params[:image] || Rails.root.join('public/images/fallback/courses/default.png').open
+    @image = permited_params[:image]
+    convert_base64
+    @image ||= Rails.root.join('public/images/fallback/courses/default.png').open
     @course = Course.create!(name: permited_params[:name], user_auth: @user_auth, image: @image,
                              about: permited_params[:about])
     @data = { name: @course.name.to_s, course_id: @course.id, creator_user_name: @user_auth.user_name,
@@ -144,5 +146,18 @@ class Api::V1::CoursesController < ApplicationController
                         else
                           @instructor.instructor.image.url
                         end
+  end
+  def convert_base64
+    if @image.is_a?(String)
+      in_content_type, encoding, string = @image.split(/[:;,]/)[1..3]
+      extention = in_content_type.split('/')[1] 
+      if encoding == 'base64'
+        @tempfile = Tempfile.new(['tmp', '.' + extention])
+        @tempfile.binmode
+        @tempfile.write Base64.decode64(string)
+        @tempfile.rewind
+        @image = @tempfile
+      end
+    end
   end
 end
