@@ -6,6 +6,7 @@ This is the back end apis for master class learning manegement system.
 ## Requierments
 
 - you must have the .env file in the root directory.
+
 ## Example for .env
 ```
      JWT_SECRET=secret
