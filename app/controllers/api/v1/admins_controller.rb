@@ -5,9 +5,9 @@ class Api::V1::AdminsController < ApplicationController
   def create
     permited_params = signup_params
     ActiveRecord::Base.transaction do
-      @user_auth = UserAuth.create(email: permited_params[:email], password: permited_params[:password],
+      @user_auth = UserAuth.create!(email: permited_params[:email], password: permited_params[:password],
                                    password_confirmation: permited_params[:password_confirmation], user_name: permited_params[:user_name], role: role)
-      @admin = Admin.create(first_name: permited_params[:first_name], last_name: permited_params[:last_name],
+      @admin = Admin.create!(first_name: permited_params[:first_name], last_name: permited_params[:last_name],
                             birthday: permited_params[:birthday], user_auth_id: @user_auth.id, image: permited_params[:image])
     end
     @data = { name: "#{@admin.first_name} #{@admin.last_name}", email: @user_auth.email,
@@ -19,7 +19,9 @@ class Api::V1::AdminsController < ApplicationController
     permited_params = promote_params
     ActiveRecord::Base.transaction do
       @user_auth = UserAuth.find_by!(user_name: permited_params[:user_name]) || UserAuth.find_by!(email: permited_params[:email])
+      @learner = Learner.find_by!(user_auth: @user_auth) 
       @user_auth.update!(role: UserAuth.roles[:instructor])
+      @instructor = Instructor.create!(first_name: @learner.first_name, last_name: @learner.last_name, birthday: @learner.birthday, image: @learner.image, user_auth: @user_auth)
     end
     render status: :created
   end

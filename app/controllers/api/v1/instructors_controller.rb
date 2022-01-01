@@ -5,9 +5,9 @@ class Api::V1::InstructorsController < ApplicationController
   def create
     permited_params = signup_params
     ActiveRecord::Base.transaction do
-      @user_auth = UserAuth.create(email: permited_params[:email], password: permited_params[:password],
+      @user_auth = UserAuth.create!(email: permited_params[:email], password: permited_params[:password],
                               password_confirmation: permited_params[:password_confirmation], user_name: permited_params[:user_name], role: role)
-      @instructor = Instructor.create(first_name: permited_params[:first_name], last_name: permited_params[:last_name],
+      @instructor = Instructor.create!(first_name: permited_params[:first_name], last_name: permited_params[:last_name],
                                  birthday: permited_params[:birthday], user_auth_id: @user_auth.id, image: permited_params[:image])
     end
     @data = { name: "#{@instructor.first_name} #{@instructor.last_name}", email: @user_auth.email,
